@@ -1,4 +1,3 @@
-
 import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
@@ -148,7 +147,7 @@ const ImageUploader = ({ onImageSelected }: { onImageSelected: (image: File, loc
       
       {isLoading && (
         <div className="mt-4">
-          <Progress value={uploadProgress} className="h-2 bg-gray-100" indicatorClassName="bg-eco-green" />
+          <Progress value={uploadProgress} className="h-2 bg-gray-100" />
           <p className="text-sm text-gray-500 mt-1 text-center">Uploading: {uploadProgress}%</p>
         </div>
       )}
