@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
 
 const Header = () => {
   return (
@@ -52,10 +53,25 @@ const Header = () => {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <Avatar>
-            <AvatarImage src="https://github.com/shadcn.png" alt="User" />
-            <AvatarFallback>US</AvatarFallback>
-          </Avatar>
+          <SignedIn>
+            <UserButton 
+              afterSignOutUrl="/sign-in"
+              appearance={{
+                elements: {
+                  avatarBox: "w-10 h-10",
+                  userButtonPopoverCard: "shadow-lg",
+                },
+              }}
+            />
+          </SignedIn>
+          <SignedOut>
+            <Link
+              to="/sign-in"
+              className="text-sm font-medium text-eco-green hover:text-eco-green/90"
+            >
+              Sign in
+            </Link>
+          </SignedOut>
         </div>
       </div>
     </header>

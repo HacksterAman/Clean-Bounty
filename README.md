@@ -35,7 +35,7 @@ Our vision is to create a cleaner, more sustainable world by empowering communit
 - **AI Integration**: Google Gemini
 - **Maps**: Google Maps API
 - **Database**: Supabase
-- **Authentication**: Supabase Auth
+- **Authentication**: Clerk
 
 ## 🚀 Getting Started
 
@@ -44,6 +44,7 @@ Our vision is to create a cleaner, more sustainable world by empowering communit
 - npm or bun package manager
 - Google Maps API key
 - Gemini API key
+- Clerk API keys
 
 ### Installation
 
@@ -67,6 +68,8 @@ VITE_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
 VITE_GEMINI_API_KEY=your_gemini_api_key
 VITE_SUPABASE_URL=your_supabase_url
 VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+VITE_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+VITE_CLERK_SECRET_KEY=your_clerk_secret_key
 ```
 
 4. Start the development server:
@@ -94,6 +97,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - Google Gemini AI for waste classification
 - Google Maps for location services
+- Clerk for secure authentication
 - The open-source community for their invaluable tools and libraries
 
 ---
