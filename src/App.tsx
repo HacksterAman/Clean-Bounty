@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -9,6 +8,7 @@ import Upload from "./pages/Upload";
 import MapView from "./pages/MapView";
 import Rewards from "./pages/Rewards";
 import NotFound from "./pages/NotFound";
+import { AITest } from "./components/AITest";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +23,7 @@ const App = () => (
           <Route path="/upload" element={<Upload />} />
           <Route path="/map" element={<MapView />} />
           <Route path="/rewards" element={<Rewards />} />
+          <Route path="/ai-test" element={<AITest />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

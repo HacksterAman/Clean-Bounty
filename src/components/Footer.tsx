@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -6,7 +5,7 @@ const Footer = () => {
     <footer className="bg-white border-t border-eco-gray py-6">
       <div className="container grid gap-8 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <h3 className="font-semibold text-lg mb-4 text-eco-green">EcoScan Rewards</h3>
+          <h3 className="font-semibold text-lg mb-4 text-eco-green">Clean Bounty</h3>
           <p className="text-sm text-gray-600">
             Making waste management rewarding through sustainable practices and community engagement.
           </p>
@@ -49,7 +48,7 @@ const Footer = () => {
           <h3 className="font-semibold mb-4">Contact</h3>
           <ul className="space-y-2 text-sm">
             <li className="text-gray-600">
-              <span className="font-medium">Email:</span> info@ecoscanrewards.com
+              <span className="font-medium">Email:</span> info@cleanbounty.com
             </li>
             <li className="text-gray-600">
               <span className="font-medium">Phone:</span> +1 (555) 123-4567
@@ -79,7 +78,7 @@ const Footer = () => {
       </div>
       <div className="container mt-8 pt-6 border-t border-eco-gray">
         <p className="text-sm text-gray-600 text-center">
-          © 2025 EcoScan Rewards. All rights reserved.
+          © 2025 Clean Bounty. All rights reserved.
         </p>
       </div>
     </footer>

@@ -1,97 +1,63 @@
-
 import { useState, useEffect } from "react";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-
-interface WasteType {
-  type: string;
-  confidence: number;
-  color: string;
-  description: string;
-  points: number;
-}
+import { analyzeImage, generateBountyDescription, WasteTypeAIResult, BountyDescription } from "@/lib/ai";
 
 interface WasteClassificationProps {
   imageUrl: string;
-  onComplete: (wasteData: WasteType) => void;
+  onComplete: (wasteData: WasteTypeAIResult['waste_types'][0]) => void;
 }
 
 const WasteClassification = ({ imageUrl, onComplete }: WasteClassificationProps) => {
   const [isAnalyzing, setIsAnalyzing] = useState(true);
   const [progress, setProgress] = useState(0);
-  const [wasteTypes, setWasteTypes] = useState<WasteType[]>([]);
-  const [selectedWaste, setSelectedWaste] = useState<WasteType | null>(null);
+  const [wasteTypes, setWasteTypes] = useState<WasteTypeAIResult['waste_types']>([]);
+  const [selectedWaste, setSelectedWaste] = useState<WasteTypeAIResult['waste_types'][0] | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [bounty, setBounty] = useState<BountyDescription | null>(null);
   
   useEffect(() => {
-    // Simulate waste classification API call
     const analyzeWaste = async () => {
-      // Progress animation
-      let currentProgress = 0;
-      const interval = setInterval(() => {
-        currentProgress += 5;
-        setProgress(Math.min(currentProgress, 95));
-        
-        if (currentProgress >= 95) {
-          clearInterval(interval);
+      try {
+        let currentProgress = 0;
+        const interval = setInterval(() => {
+          currentProgress += 5;
+          setProgress(Math.min(currentProgress, 95));
+          if (currentProgress >= 95) {
+            clearInterval(interval);
+          }
+        }, 200);
+
+        const aiResult = await analyzeImage(imageUrl);
+        setWasteTypes(aiResult.waste_types);
+        setSelectedWaste(aiResult.waste_types[0] || null);
+
+        if (aiResult.waste_types.length > 0) {
+          const bountyDesc = await generateBountyDescription(JSON.stringify(aiResult));
+          setBounty(bountyDesc);
         }
-      }, 200);
-      
-      // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 3000));
-      
-      // Mock classification results
-      const mockResults: WasteType[] = [
-        {
-          type: "Plastic",
-          confidence: 0.87,
-          color: "blue",
-          description: "Single-use plastic that needs proper recycling to prevent environmental damage.",
-          points: 10
-        },
-        {
-          type: "Paper",
-          confidence: 0.09,
-          color: "yellow",
-          description: "Recyclable paper waste that can be easily processed into new paper products.",
-          points: 5
-        },
-        {
-          type: "Organic",
-          confidence: 0.03,
-          color: "green",
-          description: "Biodegradable waste that can be composted to create nutrient-rich soil.",
-          points: 3
-        },
-        {
-          type: "Metal",
-          confidence: 0.01,
-          color: "gray",
-          description: "Recyclable metal waste that can be melted down and reused indefinitely.",
-          points: 15
-        }
-      ];
-      
-      clearInterval(interval);
-      setProgress(100);
-      setWasteTypes(mockResults);
-      setSelectedWaste(mockResults[0]); // Select the highest confidence by default
-      
-      setTimeout(() => {
+
+        clearInterval(interval);
+        setProgress(100);
+        setTimeout(() => {
+          setIsAnalyzing(false);
+        }, 500);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to analyze image');
         setIsAnalyzing(false);
-      }, 500);
+      }
     };
-    
     analyzeWaste();
-  }, []);
-  
+  }, [imageUrl]);
+
   const handleConfirm = () => {
     if (selectedWaste) {
       onComplete(selectedWaste);
     }
   };
-  
+
   const getBadgeColor = (type: string) => {
     switch (type.toLowerCase()) {
       case "plastic":
@@ -102,11 +68,15 @@ const WasteClassification = ({ imageUrl, onComplete }: WasteClassificationProps)
         return "bg-green-600 hover:bg-green-700";
       case "metal":
         return "bg-gray-600 hover:bg-gray-700";
+      case "glass":
+        return "bg-purple-500 hover:bg-purple-600";
+      case "electronic":
+        return "bg-red-500 hover:bg-red-600";
       default:
         return "bg-eco-green hover:bg-eco-green/90";
     }
   };
-  
+
   return (
     <div className="w-full">
       {isAnalyzing ? (
@@ -130,15 +100,29 @@ const WasteClassification = ({ imageUrl, onComplete }: WasteClassificationProps)
           <Progress value={progress} className="w-full h-2" />
           <p className="text-xs text-gray-400 mt-2">{progress}% complete</p>
         </div>
+      ) : error ? (
+        <div className="p-4 bg-red-50 text-red-700 rounded-lg">
+          <h3 className="font-medium mb-2">Error Analyzing Image</h3>
+          <p>{error}</p>
+          <Button 
+            variant="outline" 
+            className="mt-4"
+            onClick={() => window.location.reload()}
+          >
+            Try Again
+          </Button>
+        </div>
       ) : (
         <div>
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center justify-between">
                 <span>Waste Classification Results</span>
-                <Badge variant="outline" className="bg-eco-green/10 text-eco-green border-eco-green">
-                  {selectedWaste?.points} Points
-                </Badge>
+                {selectedWaste && (
+                  <Badge variant="outline" className="bg-eco-green/10 text-eco-green border-eco-green">
+                    {selectedWaste.points} Points
+                  </Badge>
+                )}
               </CardTitle>
               <CardDescription>
                 Our AI has analyzed your waste image. Confirm or change the classification.
@@ -167,7 +151,6 @@ const WasteClassification = ({ imageUrl, onComplete }: WasteClassificationProps)
                       ))}
                     </div>
                   </div>
-                  
                   {selectedWaste && (
                     <div className="border rounded-lg p-4 bg-gray-50">
                       <div className="flex justify-between items-center mb-2">
@@ -196,14 +179,24 @@ const WasteClassification = ({ imageUrl, onComplete }: WasteClassificationProps)
                       </div>
                     </div>
                   )}
+                  {bounty && (
+                    <div className="border rounded-lg p-4 bg-eco-green/5 mt-2">
+                      <h4 className="font-medium mb-1">Bounty Description</h4>
+                      <div className="mb-1"><span className="font-semibold">{bounty.bounty_title}</span></div>
+                      <div className="mb-1"><span className="font-semibold">Target Waste:</span> {bounty.target_waste.join(', ')}</div>
+                      <div className="mb-1"><span className="font-semibold">Potential Hazards:</span> {bounty.potential_hazards}</div>
+                      <div className="mb-1"><span className="font-semibold">Cleanup Approach:</span> {bounty.cleanup_approach}</div>
+                      <div className="mb-1"><span className="font-semibold">Reward Points:</span> {Object.entries(bounty.reward_points).map(([type, pts]) => `${type}: ${pts}`).join(', ')}</div>
+                    </div>
+                  )}
                 </div>
               </div>
             </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline" onClick={() => setSelectedWaste(null)}>
-                Change
-              </Button>
-              <Button className="bg-eco-green hover:bg-eco-green/90" onClick={handleConfirm}>
+            <CardFooter>
+              <Button 
+                className="w-full bg-eco-green hover:bg-eco-green/90"
+                onClick={handleConfirm}
+              >
                 Confirm Classification
               </Button>
             </CardFooter>

@@ -33,7 +33,7 @@ const RewardsGallery = () => {
       description: "Get 5% off your next purchase at our partner eco-friendly store.",
       points: 50,
       category: "Discount",
-      image: "https://images.unsplash.com/photo-1608299882289-176343a1e26b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZGlzY291bnR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
+      image: "https://plus.unsplash.com/premium_photo-1661337018906-0ef13f0b4d63?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
     },
     {
       id: 3,
@@ -41,7 +41,7 @@ const RewardsGallery = () => {
       description: "Premium stainless steel water bottle with our logo.",
       points: 200,
       category: "Merchandise",
-      image: "https://images.unsplash.com/photo-1546146977-93de3fc367e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8d2F0ZXIlMjBib3R0bGV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
+      image: "https://images.unsplash.com/photo-1615308089923-cfcf7c2eb112?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
     },
     {
       id: 4,
@@ -57,7 +57,7 @@ const RewardsGallery = () => {
       description: "Donate to a local community garden project in your name.",
       points: 150,
       category: "Environment",
-      image: "https://images.unsplash.com/photo-1571469228067-15a1dd9de7d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29tbXVuaXR5JTIwZ2FyZGVufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
+      image: "https://plus.unsplash.com/premium_photo-1663090966558-e62333420712?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Q29tbXVuaXR5JTIwR2FyZGVufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
     },
     {
       id: 6,
