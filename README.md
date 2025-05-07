@@ -1,73 +1,101 @@
-# Welcome to your Lovable project
+# 🌱 Clean Bounty
 
-## Project info
+Clean Bounty is an innovative platform that incentivizes community-driven environmental cleanup by rewarding users for reporting and cleaning waste in their localities. By combining cutting-edge AI technology with a gamified reward system, we're making environmental conservation both impactful and rewarding.
 
-**URL**: https://lovable.dev/projects/51ba9938-0952-41ff-bd8a-e71027194ff9
+## 🌟 Vision
 
-## How can I edit this code?
+Our vision is to create a cleaner, more sustainable world by empowering communities to take action against waste pollution. We believe that by providing incentives and making waste management engaging, we can create a positive impact on our environment while fostering community participation.
 
-There are several ways of editing your application.
+## ✨ Key Features
 
-**Use Lovable**
+### 🤖 AI-Powered Waste Classification
+- Utilizes Google's Gemini AI for accurate waste classification
+- Identifies different types of waste for proper disposal
+- Helps in determining appropriate cleanup methods
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/51ba9938-0952-41ff-bd8a-e71027194ff9) and start prompting.
+### 📍 Location-Based Reporting
+- GPS integration for precise waste location tracking
+- Google Maps integration for easy navigation
+- Visual representation of cleanup areas
 
-Changes made via Lovable will be committed automatically to this repo.
+### 💰 Reward System
+- Earn bounties for reporting waste
+- Additional rewards for participating in cleanup
+- Redeemable rewards for verified cleanup actions
 
-**Use your preferred IDE**
+### 🎯 Community Impact
+- Track local cleanup progress
+- Community leaderboards
+- Impact statistics and achievements
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🛠️ Technology Stack
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- **Frontend**: React with TypeScript
+- **Styling**: Tailwind CSS
+- **AI Integration**: Google Gemini
+- **Maps**: Google Maps API
+- **Database**: Supabase
+- **Authentication**: Supabase Auth
 
-Follow these steps:
+## 🚀 Getting Started
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or bun package manager
+- Google Maps API key
+- Gemini API key
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### Installation
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+1. Clone the repository:
+```bash
+git clone https://github.com/HacksterAman/Clean-Bounty.git
+cd Clean-Bounty
 ```
 
-**Edit a file directly in GitHub**
+2. Install dependencies:
+```bash
+npm install
+# or
+bun install
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+3. Set up environment variables:
+Create a `.env` file in the root directory with the following variables:
+```env
+VITE_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
+VITE_GEMINI_API_KEY=your_gemini_api_key
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
 
-**Use GitHub Codespaces**
+4. Start the development server:
+```bash
+npm run dev
+# or
+bun dev
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 🤝 Contributing
 
-## What technologies are used for this project?
+We welcome contributions from the community! Whether it's bug fixes, feature enhancements, or documentation improvements, your input helps make Clean Bounty better.
 
-This project is built with:
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 📝 License
 
-## How can I deploy this project?
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-Simply open [Lovable](https://lovable.dev/projects/51ba9938-0952-41ff-bd8a-e71027194ff9) and click on Share -> Publish.
+## 🙏 Acknowledgments
 
-## Can I connect a custom domain to my Lovable project?
+- Google Gemini AI for waste classification
+- Google Maps for location services
+- The open-source community for their invaluable tools and libraries
 
-Yes, you can!
+---
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Join us in making the world a cleaner place, one bounty at a time! 🌍✨
